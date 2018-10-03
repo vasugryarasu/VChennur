@@ -15,11 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rootVC : UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-//        if UserDefaults.standard.string(forKey: "status") == "true"{
-//            DispatchQueue.main.async {
-//                self.rootVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: StoryboardId.ISSUES_VC)
-//            }
-//        }
+
         Switcher.updateRootVC()
 
         return true

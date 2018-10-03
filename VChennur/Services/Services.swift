@@ -43,18 +43,7 @@ enum Service{
     static let GET_CHAT_ISSUE_IMAGES = ISSUE_BASE_URL + "get_chat_issue_images"
 }
 
-// VIEW CONTROLLERS STORYBOARD ID
-enum StoryboardId{
-    static let NAVIGATION_VC = "NavigationVC"
-    static let MENU_NAVIGATION_VC = "MenuNavigation"
-    static let LOGIN_VC = "VCLoginVC"
-    static let SIGNUP_VC = "VCSignUpVC"
-    static let FORGOT_PASSWORD = "VCForgotPasswordVC"
-    static let OTP_VC = "VCOTPScreen"
-    static let ISSUES_VC = "VCIssuesVC"
-    static let ISSUES_CELL = "IssuesCell"
-    
-}
+
 
 
 

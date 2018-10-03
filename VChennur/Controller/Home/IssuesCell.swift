@@ -9,12 +9,15 @@
 import UIKit
 
 class IssuesCell: UITableViewCell {
-    @IBOutlet weak var issueIDLbl: UILabel!
+    @IBOutlet weak var status: UILabel!
+    @IBOutlet weak var statusLbl: UILabel!
+    @IBOutlet weak var issueNameLbl: UILabel!
+    @IBOutlet weak var issueTimeLbl: UILabel!
+    @IBOutlet weak var issueIdLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-       issueIDLbl.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
-        issueIDLbl.bounds.size.width = 30
-        issueIDLbl.bounds.size.height = 144
+     status.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+        statusLbl.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

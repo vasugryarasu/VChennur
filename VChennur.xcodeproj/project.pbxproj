@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5705C907215B7B9200980204 /* EnterOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5705C906215B7B9200980204 /* EnterOTPScreen.swift */; };
+		570C80FC215D6116008B884D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570C80FB215D6116008B884D /* Reachability.swift */; };
+		57158244215AB2A6008080BA /* SplashScreen.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 57158243215AB2A6008080BA /* SplashScreen.jpeg */; };
 		5734F4FA21523414009F30FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734F4F921523414009F30FC /* AppDelegate.swift */; };
 		5734F4FC21523414009F30FC /* VCLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734F4FB21523414009F30FC /* VCLoginVC.swift */; };
 		5734F4FF21523414009F30FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5734F4FD21523414009F30FC /* Main.storyboard */; };
@@ -14,19 +17,35 @@
 		5734F50421523418009F30FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5734F50221523418009F30FC /* LaunchScreen.storyboard */; };
 		5734F510215271D8009F30FC /* VCSignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5734F50F215271D8009F30FC /* VCSignUpVC.swift */; };
 		573B0757215615CE00EB32C5 /* VCOTPScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573B0756215615CE00EB32C5 /* VCOTPScreen.swift */; };
+		574997EA2161608E00D921A5 /* IssueImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574997E92161608E00D921A5 /* IssueImageCell.swift */; };
 		5753638D2158B4D6002B2E89 /* APICalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753638C2158B4D6002B2E89 /* APICalling.swift */; };
 		5753639121590761002B2E89 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753639021590761002B2E89 /* Switcher.swift */; };
-		5753639321593609002B2E89 /* ImagesUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753639221593609002B2E89 /* ImagesUpload.swift */; };
 		578283082153BFD6005D459F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578283072153BFD6005D459F /* Info.plist */; };
 		5782830E2153CA89005D459F /* VCForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5782830D2153CA89005D459F /* VCForgotPasswordVC.swift */; };
+		579021D1215E5BEA003C60A6 /* VCAddIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579021D0215E5BEA003C60A6 /* VCAddIssue.swift */; };
+		579137C5215D2CED003B5C46 /* GenericVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579137C4215D2CED003B5C46 /* GenericVC.swift */; };
+		57A9A880215DF989007DABE7 /* VCIssueDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A87F215DF989007DABE7 /* VCIssueDetailVC.swift */; };
+		57A9A882215E00D8007DABE7 /* VCIssueChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A881215E00D8007DABE7 /* VCIssueChatVC.swift */; };
+		57A9A884215E0553007DABE7 /* VCIssueDetailAndChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A9A883215E0553007DABE7 /* VCIssueDetailAndChatVC.swift */; };
+		57C1B67A21632FD100B21DB3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C1B67921632FD100B21DB3 /* ChatCell.swift */; };
 		57D174A82152CC6200C2D758 /* VCIssuesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D174A72152CC6200C2D758 /* VCIssuesVC.swift */; };
 		57D174AA2152CD2300C2D758 /* IssuesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D174A92152CD2300C2D758 /* IssuesCell.swift */; };
 		57E6D048215501E200C4AEA7 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6D047215501E200C4AEA7 /* Services.swift */; };
 		57E6D04C215530A200C4AEA7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6D04B215530A200C4AEA7 /* Extensions.swift */; };
 		57E6D0532155350200C4AEA7 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E6D0522155350200C4AEA7 /* DataModel.swift */; };
+		57E9C4FA215F457B00675A76 /* Storyboard IDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9C4F9215F457B00675A76 /* Storyboard IDs.swift */; };
+		57E9C4FC215F4FEE00675A76 /* VCUIAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9C4FB215F4FEE00675A76 /* VCUIAssets.swift */; };
+		57E9C4FE215F908600675A76 /* VCChatReplyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9C4FD215F908600675A76 /* VCChatReplyVC.swift */; };
+		57E9C500215F952000675A76 /* ExecutiveAddIssueVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E9C4FF215F952000675A76 /* ExecutiveAddIssueVc.swift */; };
+		A75A4B7CF0795E48E1921BB4 /* Pods_VChennur.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CAD18FF3859F00C972F8A4 /* Pods_VChennur.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		156550D2EA03BB5BF8E8D9D7 /* Pods-VChennur.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VChennur.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VChennur/Pods-VChennur.debug.xcconfig"; sourceTree = "<group>"; };
+		24CAD18FF3859F00C972F8A4 /* Pods_VChennur.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VChennur.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5705C906215B7B9200980204 /* EnterOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterOTPScreen.swift; sourceTree = "<group>"; };
+		570C80FB215D6116008B884D /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		57158243215AB2A6008080BA /* SplashScreen.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SplashScreen.jpeg; sourceTree = "<group>"; };
 		5734F4F621523414009F30FC /* VChennur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VChennur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5734F4F921523414009F30FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5734F4FB21523414009F30FC /* VCLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCLoginVC.swift; sourceTree = "<group>"; };
@@ -35,16 +54,28 @@
 		5734F50321523418009F30FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5734F50F215271D8009F30FC /* VCSignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCSignUpVC.swift; sourceTree = "<group>"; };
 		573B0756215615CE00EB32C5 /* VCOTPScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCOTPScreen.swift; sourceTree = "<group>"; };
+		574997E92161608E00D921A5 /* IssueImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueImageCell.swift; sourceTree = "<group>"; };
 		5753638C2158B4D6002B2E89 /* APICalling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalling.swift; sourceTree = "<group>"; };
 		5753639021590761002B2E89 /* Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Switcher.swift; sourceTree = "<group>"; };
-		5753639221593609002B2E89 /* ImagesUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesUpload.swift; sourceTree = "<group>"; };
 		578283072153BFD6005D459F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5782830D2153CA89005D459F /* VCForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPasswordVC.swift; sourceTree = "<group>"; };
+		579021D0215E5BEA003C60A6 /* VCAddIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCAddIssue.swift; sourceTree = "<group>"; };
+		579137BD215CF18B003B5C46 /* VChennur-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VChennur-Bridging-Header.h"; sourceTree = "<group>"; };
+		579137C4215D2CED003B5C46 /* GenericVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericVC.swift; sourceTree = "<group>"; };
+		57A9A87F215DF989007DABE7 /* VCIssueDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIssueDetailVC.swift; sourceTree = "<group>"; };
+		57A9A881215E00D8007DABE7 /* VCIssueChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIssueChatVC.swift; sourceTree = "<group>"; };
+		57A9A883215E0553007DABE7 /* VCIssueDetailAndChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIssueDetailAndChatVC.swift; sourceTree = "<group>"; };
+		57C1B67921632FD100B21DB3 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		57D174A72152CC6200C2D758 /* VCIssuesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIssuesVC.swift; sourceTree = "<group>"; };
 		57D174A92152CD2300C2D758 /* IssuesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesCell.swift; sourceTree = "<group>"; };
 		57E6D047215501E200C4AEA7 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		57E6D04B215530A200C4AEA7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		57E6D0522155350200C4AEA7 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		57E9C4F9215F457B00675A76 /* Storyboard IDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storyboard IDs.swift"; sourceTree = "<group>"; };
+		57E9C4FB215F4FEE00675A76 /* VCUIAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCUIAssets.swift; sourceTree = "<group>"; };
+		57E9C4FD215F908600675A76 /* VCChatReplyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCChatReplyVC.swift; sourceTree = "<group>"; };
+		57E9C4FF215F952000675A76 /* ExecutiveAddIssueVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecutiveAddIssueVc.swift; sourceTree = "<group>"; };
+		D041550BC6BB732EDD8C719E /* Pods-VChennur.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VChennur.release.xcconfig"; path = "Pods/Target Support Files/Pods-VChennur/Pods-VChennur.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A75A4B7CF0795E48E1921BB4 /* Pods_VChennur.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +95,8 @@
 			children = (
 				5734F4F821523414009F30FC /* VChennur */,
 				5734F4F721523414009F30FC /* Products */,
+				EE55BB51298193F7DFACDD42 /* Pods */,
+				BACB09DD0E2DFADC28765C03 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,15 +112,90 @@
 			isa = PBXGroup;
 			children = (
 				5734F4F921523414009F30FC /* AppDelegate.swift */,
+				579021D6215E5CAB003C60A6 /* GenericViewController */,
+				57E6D0502155348100C4AEA7 /* Extensions */,
+				57E6D04F2155346800C4AEA7 /* Services */,
 				57E6D04E215533CE00C4AEA7 /* Controller */,
 				57E6D04D215533AD00C4AEA7 /* View */,
 				57E6D0542155350B00C4AEA7 /* Model */,
-				57E6D04F2155346800C4AEA7 /* Services */,
-				57E6D0502155348100C4AEA7 /* Extensions */,
+				579021D9215E5E5A003C60A6 /* DataHandling */,
+				579021D7215E5CCF003C60A6 /* Reachability */,
 				5734F50021523418009F30FC /* Assets.xcassets */,
 				578283072153BFD6005D459F /* Info.plist */,
 			);
 			path = VChennur;
+			sourceTree = "<group>";
+		};
+		579021D2215E5C01003C60A6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5734F4FB21523414009F30FC /* VCLoginVC.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		579021D3215E5C13003C60A6 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				5734F50F215271D8009F30FC /* VCSignUpVC.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		579021D4215E5C41003C60A6 /* OTP */ = {
+			isa = PBXGroup;
+			children = (
+				573B0756215615CE00EB32C5 /* VCOTPScreen.swift */,
+				5705C906215B7B9200980204 /* EnterOTPScreen.swift */,
+			);
+			path = OTP;
+			sourceTree = "<group>";
+		};
+		579021D5215E5C8E003C60A6 /* Forgot Password */ = {
+			isa = PBXGroup;
+			children = (
+				5782830D2153CA89005D459F /* VCForgotPasswordVC.swift */,
+			);
+			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
+		579021D6215E5CAB003C60A6 /* GenericViewController */ = {
+			isa = PBXGroup;
+			children = (
+				579137C4215D2CED003B5C46 /* GenericVC.swift */,
+			);
+			path = GenericViewController;
+			sourceTree = "<group>";
+		};
+		579021D7215E5CCF003C60A6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				570C80FB215D6116008B884D /* Reachability.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		579021D8215E5CFB003C60A6 /* Issues&Chat */ = {
+			isa = PBXGroup;
+			children = (
+				579021D0215E5BEA003C60A6 /* VCAddIssue.swift */,
+				574997E92161608E00D921A5 /* IssueImageCell.swift */,
+				57E9C4FF215F952000675A76 /* ExecutiveAddIssueVc.swift */,
+				57E9C4FD215F908600675A76 /* VCChatReplyVC.swift */,
+				57A9A883215E0553007DABE7 /* VCIssueDetailAndChatVC.swift */,
+				57A9A87F215DF989007DABE7 /* VCIssueDetailVC.swift */,
+				57A9A881215E00D8007DABE7 /* VCIssueChatVC.swift */,
+				57C1B67921632FD100B21DB3 /* ChatCell.swift */,
+			);
+			path = "Issues&Chat";
+			sourceTree = "<group>";
+		};
+		579021D9215E5E5A003C60A6 /* DataHandling */ = {
+			isa = PBXGroup;
+			children = (
+				5753639021590761002B2E89 /* Switcher.swift */,
+			);
+			path = DataHandling;
 			sourceTree = "<group>";
 		};
 		57E6D04D215533AD00C4AEA7 /* View */ = {
@@ -94,6 +203,7 @@
 			children = (
 				5734F4FD21523414009F30FC /* Main.storyboard */,
 				5734F50221523418009F30FC /* LaunchScreen.storyboard */,
+				57158243215AB2A6008080BA /* SplashScreen.jpeg */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -101,11 +211,10 @@
 		57E6D04E215533CE00C4AEA7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5734F4FB21523414009F30FC /* VCLoginVC.swift */,
-				5734F50F215271D8009F30FC /* VCSignUpVC.swift */,
-				5753639221593609002B2E89 /* ImagesUpload.swift */,
-				5782830D2153CA89005D459F /* VCForgotPasswordVC.swift */,
-				573B0756215615CE00EB32C5 /* VCOTPScreen.swift */,
+				579021D2215E5C01003C60A6 /* Login */,
+				579021D3215E5C13003C60A6 /* SignUp */,
+				579021D4215E5C41003C60A6 /* OTP */,
+				579021D5215E5C8E003C60A6 /* Forgot Password */,
 				57E6D0512155349B00C4AEA7 /* Home */,
 			);
 			path = Controller;
@@ -115,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				57E6D047215501E200C4AEA7 /* Services.swift */,
+				5753638C2158B4D6002B2E89 /* APICalling.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -123,8 +233,8 @@
 			isa = PBXGroup;
 			children = (
 				57E6D04B215530A200C4AEA7 /* Extensions.swift */,
-				5753639021590761002B2E89 /* Switcher.swift */,
-				5753638C2158B4D6002B2E89 /* APICalling.swift */,
+				57E9C4F9215F457B00675A76 /* Storyboard IDs.swift */,
+				57E9C4FB215F4FEE00675A76 /* VCUIAssets.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -132,8 +242,10 @@
 		57E6D0512155349B00C4AEA7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				579137BD215CF18B003B5C46 /* VChennur-Bridging-Header.h */,
 				57D174A72152CC6200C2D758 /* VCIssuesVC.swift */,
 				57D174A92152CD2300C2D758 /* IssuesCell.swift */,
+				579021D8215E5CFB003C60A6 /* Issues&Chat */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -146,6 +258,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BACB09DD0E2DFADC28765C03 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24CAD18FF3859F00C972F8A4 /* Pods_VChennur.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE55BB51298193F7DFACDD42 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				156550D2EA03BB5BF8E8D9D7 /* Pods-VChennur.debug.xcconfig */,
+				D041550BC6BB732EDD8C719E /* Pods-VChennur.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,9 +282,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5734F50821523418009F30FC /* Build configuration list for PBXNativeTarget "VChennur" */;
 			buildPhases = (
+				A94B31597D2A28D9DE72DABF /* [CP] Check Pods Manifest.lock */,
 				5734F4F221523414009F30FC /* Sources */,
 				5734F4F321523414009F30FC /* Frameworks */,
 				5734F4F421523414009F30FC /* Resources */,
+				F1DB439B3CA4C5CCA5E5F8E8 /* [CP] Embed Pods Frameworks */,
+				4B5A267C80061FC84B5CFF2C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -178,6 +310,7 @@
 				TargetAttributes = {
 					5734F4F521523414009F30FC = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -207,29 +340,106 @@
 				5734F50421523418009F30FC /* LaunchScreen.storyboard in Resources */,
 				5734F50121523418009F30FC /* Assets.xcassets in Resources */,
 				578283082153BFD6005D459F /* Info.plist in Resources */,
+				57158244215AB2A6008080BA /* SplashScreen.jpeg in Resources */,
 				5734F4FF21523414009F30FC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4B5A267C80061FC84B5CFF2C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VChennur/Pods-VChennur-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A94B31597D2A28D9DE72DABF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VChennur-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F1DB439B3CA4C5CCA5E5F8E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VChennur/Pods-VChennur-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/PageMenu/PageMenu.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PageMenu.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VChennur/Pods-VChennur-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5734F4F221523414009F30FC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57A9A880215DF989007DABE7 /* VCIssueDetailVC.swift in Sources */,
+				57E9C4FA215F457B00675A76 /* Storyboard IDs.swift in Sources */,
 				57D174A82152CC6200C2D758 /* VCIssuesVC.swift in Sources */,
+				57C1B67A21632FD100B21DB3 /* ChatCell.swift in Sources */,
 				5753638D2158B4D6002B2E89 /* APICalling.swift in Sources */,
 				5753639121590761002B2E89 /* Switcher.swift in Sources */,
+				57A9A884215E0553007DABE7 /* VCIssueDetailAndChatVC.swift in Sources */,
 				57D174AA2152CD2300C2D758 /* IssuesCell.swift in Sources */,
 				573B0757215615CE00EB32C5 /* VCOTPScreen.swift in Sources */,
+				57E9C4FE215F908600675A76 /* VCChatReplyVC.swift in Sources */,
 				5734F510215271D8009F30FC /* VCSignUpVC.swift in Sources */,
 				57E6D048215501E200C4AEA7 /* Services.swift in Sources */,
+				579021D1215E5BEA003C60A6 /* VCAddIssue.swift in Sources */,
 				5782830E2153CA89005D459F /* VCForgotPasswordVC.swift in Sources */,
-				5753639321593609002B2E89 /* ImagesUpload.swift in Sources */,
+				57E9C4FC215F4FEE00675A76 /* VCUIAssets.swift in Sources */,
+				579137C5215D2CED003B5C46 /* GenericVC.swift in Sources */,
 				5734F4FC21523414009F30FC /* VCLoginVC.swift in Sources */,
 				57E6D04C215530A200C4AEA7 /* Extensions.swift in Sources */,
+				57A9A882215E00D8007DABE7 /* VCIssueChatVC.swift in Sources */,
 				5734F4FA21523414009F30FC /* AppDelegate.swift in Sources */,
+				574997EA2161608E00D921A5 /* IssueImageCell.swift in Sources */,
+				5705C907215B7B9200980204 /* EnterOTPScreen.swift in Sources */,
+				570C80FC215D6116008B884D /* Reachability.swift in Sources */,
+				57E9C500215F952000675A76 /* ExecutiveAddIssueVc.swift in Sources */,
 				57E6D0532155350200C4AEA7 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,17 +582,22 @@
 		};
 		5734F50921523418009F30FC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 156550D2EA03BB5BF8E8D9D7 /* Pods-VChennur.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7FG8RQ3FR;
 				INFOPLIST_FILE = "$(SRCROOT)/VChennur/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iGrand.VChennur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VChennur/Controller/Home/VChennur-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -390,17 +605,21 @@
 		};
 		5734F50A21523418009F30FC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D041550BC6BB732EDD8C719E /* Pods-VChennur.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G7FG8RQ3FR;
 				INFOPLIST_FILE = "$(SRCROOT)/VChennur/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iGrand.VChennur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "VChennur/Controller/Home/VChennur-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
