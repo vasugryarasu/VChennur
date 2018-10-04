@@ -10,8 +10,8 @@ import UIKit
 import KRProgressHUD
 
 
-class VCLoginVC: GenericVC,UITextFieldDelegate {
-
+class VCLoginVC: GenericVC {
+    
     // MARK:- IBOutlets
     @IBOutlet weak var mobileNumberTF: TextField!
     @IBOutlet weak var passwordTF: TextField!
@@ -30,21 +30,24 @@ class VCLoginVC: GenericVC,UITextFieldDelegate {
         login()
     }
     func login(){
-        guard let phone = mobileNumberTF.text else{return}
-        guard let password = passwordTF.text else{return}
+        guard let phone = mobileNumberTF.text,
+            let password = passwordTF.text else{return}
+        
         let postString = "phone=\(phone)&password=\(password)"
         postServiceData(serviceURL: Service.GENERAL_LOGIN, params: postString, type: GeneralLogin.self) { (userData) in
-
-            guard let status = userData.status else{return}
-            guard let message = userData.message else{return}
+            
+            guard let status = userData.status,
+                let message = userData.message else{return}
             if status == 1{
                 UserDefaults.standard.set("true", forKey: "status")
-                guard let userType = userData.userType else{return}
-                guard let userId = userData.data?.userId else{return}
-                guard let name = userData.data?.firstName else{return}
-                guard let phoneNumber = userData.data?.phone else{return}
-                guard let villageId = userData.data?.villageId else{return}
-                guard let image = userData.data?.image else{return}                
+                guard let userType = userData.userType,
+                    let userId = userData.data?.userId,
+                    let name = userData.data?.firstName,
+                    let phoneNumber = userData.data?.phone,
+                    let villageId = userData.data?.villageId,
+                    let image = userData.data?.image else{return}
+                
+                
                 UserDefaults.standard.set("\(userType)", forKey: "user_type")
                 UserDefaults.standard.set("\(userId)", forKey: "user_id")
                 UserDefaults.standard.set("\(name)", forKey: "first_name")
@@ -56,8 +59,8 @@ class VCLoginVC: GenericVC,UITextFieldDelegate {
             }else{
                 KRProgressHUD.showWarning(withMessage: message)
             }
-            }
         }
+    }
     @IBAction func forgotPasswordBtn(_ sender: UIButton) {
         navigateToDestinationThrough(storyboardID: StoryboardId.FORGOT_PASSWORD)
     }
@@ -73,8 +76,6 @@ class VCLoginVC: GenericVC,UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+    
 }
 

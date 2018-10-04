@@ -26,7 +26,7 @@ class VCOTPScreen: GenericVC {
     }
     @IBAction func mobileNumberSubmitBtn(_ sender: UIButton) {
         guard let phone = mobileNumberTF.text else{return}
-        let isValid = mobielNumberValidate(value: phone)
+        let isValid = mobileNumberValidate(value: phone)
         loginWithOTP(isValidPhoneNumber: isValid,phoneNumber: phone)}
     
      func loginWithOTP(isValidPhoneNumber: Bool,phoneNumber: String){
@@ -45,7 +45,8 @@ class VCOTPScreen: GenericVC {
                     let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.ENTER_OTP) as! EnterOTPScreen
                     vc.modalTransitionStyle = .crossDissolve
                     DispatchQueue.main.async {
-                        self.present(vc, animated: true, completion: nil)
+                        let nav = UINavigationController(rootViewController: vc)
+                        self.present(nav, animated: true, completion: nil)
                     }
                     print(phoneNumber) // toast
                 }else{}
@@ -55,9 +56,7 @@ alert(title: "Try Again", message: "Mobile Number is invalid. Please enter a val
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+    
     /*
     // MARK: - Navigation
 

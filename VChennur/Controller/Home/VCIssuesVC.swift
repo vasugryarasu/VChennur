@@ -13,8 +13,8 @@ var selectedIndex: Int = 0
 
 class VCIssuesVC: GenericVC{
     
-    var userIssuesArr = [UserIssue]()
-    var executiveIssueArr = [ExecutiveIssue]()
+    var userIssuesArr = [UserIssues]()
+    var executiveIssueArr = [Datum]()
     
     var isMenuShowing: Bool = false
     let userType = UserDefaults.standard.value(forKey: "user_type") as! String
@@ -103,6 +103,7 @@ class VCIssuesVC: GenericVC{
 }
 extension VCIssuesVC: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         switch userType {
         case "user":
             return userIssuesArr.count
@@ -122,7 +123,7 @@ extension VCIssuesVC: UITableViewDataSource,UITableViewDelegate{
             cell.issueIdLbl.text = user.issueId
             cell.issueNameLbl.text = user.name
             cell.issueTimeLbl.text = user.datetime
-            cell.status.text = user.workStatus
+            cell.status.text = user.workStatus?.rawValue
         case "executive":
             let executive = executiveIssueArr[indexPath.row]
             cell.issueIdLbl.text = executive.issueId

@@ -10,7 +10,7 @@ import UIKit
 import KRProgressHUD
 
 var registeredOTP: Int?
-class VCSignUpVC: GenericVC,UITextFieldDelegate{
+class VCSignUpVC: GenericVC{
 
 // MARK:- Create Properties
     let picker = UIPickerView()
@@ -72,7 +72,7 @@ class VCSignUpVC: GenericVC,UITextFieldDelegate{
     func validateAndUploadUserData(){
 
         guard let phone = mobileNumberTF.text, let village = selectVillageTF.text, let name = nameTF.text, let password = passwordTF.text, let reTypePassword = reTypePasswordTF.text else{return}
-        let isvalid = mobielNumberValidate(value: phone)
+        let isvalid = mobileNumberValidate(value: phone)
         if isvalid && village.count != 0 && name.count != 0 && password == reTypePassword {
             imageUploadRequest()
         }else{
@@ -96,7 +96,7 @@ class VCSignUpVC: GenericVC,UITextFieldDelegate{
         
         let boundary = generateBoundaryString()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-        let imagData = UIImageJPEGRepresentation(resizeImage(image: profileImage.image!), 0.2)
+        let imagData = resizeImage(image: profileImage.image!).jpegData(compressionQuality: 0.2)
         if imagData == nil{ return }
         
         request.httpBody = createBodyWithParameters(parameters: param, filePathKey: "file", imageDataKey: imagData! as NSData, boundary: boundary) as Data
@@ -190,7 +190,7 @@ class VCSignUpVC: GenericVC,UITextFieldDelegate{
         UIGraphicsBeginImageContext(rect.size)
         image.draw(in: rect)
         let img = UIGraphicsGetImageFromCurrentImageContext()
-        let imageData = UIImageJPEGRepresentation(img!,CGFloat(compressionQuality))
+        let imageData = img!.jpegData(compressionQuality: CGFloat(compressionQuality))
         UIGraphicsEndImageContext()
         return UIImage(data: imageData!)!
     }
@@ -219,7 +219,7 @@ extension VCSignUpVC: UIImagePickerControllerDelegate,UINavigationControllerDele
 //  Tap on the Open camera
     func openCamera(){
         if UIImagePickerController.isSourceTypeAvailable(.camera){
-            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
             imagePicker.allowsEditing = false
             imagePicker.cameraCaptureMode = .photo
             imagePicker.modalPresentationStyle = .fullScreen
@@ -231,20 +231,23 @@ extension VCSignUpVC: UIImagePickerControllerDelegate,UINavigationControllerDele
     }
 // Tap on the Open Gallary
     func openGallary(){
-        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
     
 // MARK:- Grab the Images path from the Device path
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage{
             print(pickedImage)
             profileImage.image = pickedImage
             profileImage.contentMode = .scaleAspectFill
             
         }
-        let imagePath: NSURL = (info[UIImagePickerControllerReferenceURL] as! NSURL)
+        let imagePath: NSURL = (info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.referenceURL)] as! NSURL)
         imageName = imagePath.lastPathComponent!
         print(imageName)
         
@@ -265,7 +268,16 @@ extension VCSignUpVC: UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectVillageTF.text = "\(villageNames[row])"
-        selectVillageTF.resignFirstResponder()
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

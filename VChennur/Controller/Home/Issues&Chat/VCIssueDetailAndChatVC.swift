@@ -10,11 +10,10 @@ import UIKit
 import PageMenu
 
 class VCIssueDetailAndChatVC: GenericVC {
+    
     @IBOutlet weak var replyBtn: UIButton!
     
     var pageMenu: CAPSPageMenu?
-    var userIssueArr: UserIssue?
-    var executiveIssueArr: ExecutiveIssue?
     let userType = UserDefaults.standard.value(forKey: "user_type") as! String
 
     override func viewDidLoad() {
@@ -62,8 +61,7 @@ class VCIssueDetailAndChatVC: GenericVC {
         
     }
     @IBAction func userOnTappedReplyBtn(_ sender: UIButton) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: StoryboardId.CHAT_REPLY)else{return}
-        navigationController?.pushViewController(vc, animated: true)
+        navigateToDestinationThrough(storyboardID: StoryboardId.CHAT_REPLY)
     }
    
 }

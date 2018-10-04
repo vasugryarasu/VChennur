@@ -181,11 +181,11 @@
 				579021D0215E5BEA003C60A6 /* VCAddIssue.swift */,
 				574997E92161608E00D921A5 /* IssueImageCell.swift */,
 				57E9C4FF215F952000675A76 /* ExecutiveAddIssueVc.swift */,
-				57E9C4FD215F908600675A76 /* VCChatReplyVC.swift */,
 				57A9A883215E0553007DABE7 /* VCIssueDetailAndChatVC.swift */,
 				57A9A87F215DF989007DABE7 /* VCIssueDetailVC.swift */,
 				57A9A881215E00D8007DABE7 /* VCIssueChatVC.swift */,
 				57C1B67921632FD100B21DB3 /* ChatCell.swift */,
+				57E9C4FD215F908600675A76 /* VCChatReplyVC.swift */,
 			);
 			path = "Issues&Chat";
 			sourceTree = "<group>";
@@ -598,7 +598,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "VChennur/Controller/Home/VChennur-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -620,7 +620,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.iGrand.VChennur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "VChennur/Controller/Home/VChennur-Bridging-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -20,7 +20,7 @@ class VCForgotPasswordVC: GenericVC{
     }
        @IBAction func tappedOnSubmitBtn(_ sender: UIButton) {
         guard let phone = userMobileNumberTF.text else{return}
-        let isValid = mobielNumberValidate(value: phone)
+        let isValid = mobileNumberValidate(value: phone)
         if isValid{
             let posting = "phone=\(phone)"
             postServiceData(serviceURL: Service.FORGOT_PASSWORD, params: posting, type: ForgotPassword.self) { (_) in

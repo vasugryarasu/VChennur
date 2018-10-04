@@ -31,7 +31,7 @@ extension UIViewController {
     
     func cellularDataAlert(){
         alert(title: "Cellular data is turned off", message: "Turn on cellular data or use Wi-fi to access data", actions: UIAlertAction(title: "Cancel", style: .cancel, handler: nil), UIAlertAction(title: "Settings", style: .default, handler: { (alert) in
-            UIApplication.shared.open(URL(string:"App-Prefs:root=General")!, options: [:], completionHandler: nil)
+            UIApplication.shared.open(URL(string:"App-Prefs:root=General")!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
         }))
     }
 
@@ -43,7 +43,7 @@ extension UIViewController {
         }
         
 }
-    func mobielNumberValidate(value: String) -> Bool {
+    func mobileNumberValidate(value: String) -> Bool {
         let PHONE_REGEX = "^[6-9][0-9]{9}$"
         let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
         let result =  phoneTest.evaluate(with: value)
@@ -59,3 +59,8 @@ extension UIViewController {
 
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

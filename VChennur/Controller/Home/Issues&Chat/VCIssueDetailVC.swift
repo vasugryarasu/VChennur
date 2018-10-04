@@ -9,11 +9,11 @@
 import UIKit
 import KRProgressHUD
 
-
-class VCIssueDetailVC: UIViewController ,UICollectionViewDelegate,UICollectionViewDataSource{
+var issueID: String?
+class VCIssueDetailVC: GenericVC ,UICollectionViewDelegate,UICollectionViewDataSource{
     
     var imageData: [String] = []
-    
+
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var issueIdLbl: UILabel!
     @IBOutlet weak var issueCategoryLbl: UILabel!
@@ -76,11 +76,12 @@ class VCIssueDetailVC: UIViewController ,UICollectionViewDelegate,UICollectionVi
                 let issueDetails = issueData[selectedIndex]
                 guard let id = issueDetails.id else{return}
                 UserDefaults.standard.set("\(id)", forKey: "id")
+                    issueID = id           //send iissueId to chat Reply
                 DispatchQueue.main.async {
                     self.issueIdLbl.text = issueDetails.issueId
-                    self.issueCategoryLbl.text = issueDetails.issueCategory
+                    self.issueCategoryLbl.text = "water"
                     self.issueTimeLbl.text = issueDetails.datetime
-                    self.issueStatusLbl.text = issueDetails.workStatus
+                    self.issueStatusLbl.text = issueDetails.workStatus?.rawValue
                     self.issueNameLbl.text = issueDetails.name
                     self.issueDescriptionTV.text = issueDetails.description
                 }
@@ -93,7 +94,7 @@ class VCIssueDetailVC: UIViewController ,UICollectionViewDelegate,UICollectionVi
                 let issueDetails = issueData[selectedIndex]
                 guard let id = issueDetails.id else{return}
                 UserDefaults.standard.set("\(id)", forKey: "id")
-               
+                issueID = id               //send issueId to chat Reply
                 DispatchQueue.main.async {
                     self.issueIdLbl.text = issueDetails.issueId
                     self.issueCategoryLbl.text = issueDetails.issueCategory?.rawValue

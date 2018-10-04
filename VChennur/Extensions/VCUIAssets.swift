@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-//class VCButton: UIButton {
-//    required init?(coder aDecoder: NSCoder) {
-//        
-//        super.init(coder: aDecoder)
-//        self.layer.cornerRadius = self.frame.size.height/2
-//    }
-//}
+class VCButton: UIButton {
+    required init?(coder aDecoder: NSCoder) {
+        
+        super.init(coder: aDecoder)
+        self.layer.cornerRadius = self.frame.size.height/2
+    }
+}
 
 class TextField: UITextField {
     required init?(coder aDecoder: NSCoder) {
@@ -30,23 +30,26 @@ class TextField: UITextField {
         self.textColor = color
         self.tintColor = color
         self.minimumFontSize = 17
-        self.attributedPlaceholder = NSAttributedString(string: placeholder , attributes: [NSAttributedStringKey.foregroundColor: placeholderColor])
+        self.attributedPlaceholder = NSAttributedString(string: placeholder , attributes: [NSAttributedString.Key.foregroundColor: placeholderColor])
     }
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
     }
 }
-//class VCTextView: UITextView {
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        self.layer.borderWidth = 0.8
-//        self.layer.borderColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 0.5).cgColor
-//        self.layer.cornerRadius = 10
-//    }
-//    override func prepareForInterfaceBuilder() {
-//        super.prepareForInterfaceBuilder()
-//    }
-//}
+
+
+class VCTextView: UITextView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.layer.borderWidth = 0.8
+        self.layer.borderColor = UIColor(red: 170/255, green: 170/255, blue: 170/255, alpha: 0.5).cgColor
+        self.layer.cornerRadius = 10
+    }
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+    }
+}
+
 class VCView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -56,5 +59,12 @@ class VCView: UIView {
     }
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
+    }
+}
+class VCImageView: UIImageView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.layer.cornerRadius = self.frame.height/2
+        self.clipsToBounds = true
     }
 }

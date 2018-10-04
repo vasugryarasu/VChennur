@@ -11,7 +11,7 @@ import KRProgressHUD
 
 
 
-class VCIssueChatVC: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class VCIssueChatVC: GenericVC, UITableViewDelegate,UITableViewDataSource {
   
     let cellID = "ChatCell"
     var chatingData = [ChatData]()
@@ -29,12 +29,12 @@ class VCIssueChatVC: UIViewController, UITableViewDelegate,UITableViewDataSource
         switch userType {
         case "user":
             let postString = "issue_id=\(issueId)&user_id=\(userId)"
-            print(postString)
+//print(postString)
             postServiceData(serviceURL: Service.GET_ISSUE_CHAT, params: postString, type: ExecutiveIssueChat.self) { (chatData) in
                 KRProgressHUD.dismiss()
-//                print(chatData)
+//print(chatData)
                 guard let chatDetails = chatData.data else {return}
-                print(chatDetails)
+//print(chatDetails)
                 self.chatingData = chatDetails
                 DispatchQueue.main.async {
                     self.issueChatTV.reloadData()
@@ -47,7 +47,7 @@ class VCIssueChatVC: UIViewController, UITableViewDelegate,UITableViewDataSource
                 guard let chatDetails = chatData.data else {return}
                 self.chatingData = chatDetails
 
-//                print(self.chatingData)
+//print(self.chatingData)
                 
                 DispatchQueue.main.async {
                     self.issueChatTV.reloadData()
@@ -68,10 +68,10 @@ class VCIssueChatVC: UIViewController, UITableViewDelegate,UITableViewDataSource
         let userType = userData.userType?.rawValue
         switch userType {
         case "user":
-            cell.isUser = true
+            cell.isAdmin = false
             cell.chatLabel.text = userData.description
         case "admin":
-            cell.isUser = false
+            cell.isAdmin = true
             cell.chatLabel.text = userData.description
 
         default:
