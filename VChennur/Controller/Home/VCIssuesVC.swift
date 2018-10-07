@@ -13,21 +13,60 @@ var selectedIndex: Int = 0
 
 class VCIssuesVC: GenericVC{
     
-    var userIssuesArr = [UserIssues]()
-    var executiveIssueArr = [Datum]()
-    
+    var userIssuesArr = [IssuesData]()
     var isMenuShowing: Bool = false
     let userType = UserDefaults.standard.value(forKey: "user_type") as! String
     
     @IBOutlet weak var menuBackgroundColor: UIView!
     @IBOutlet weak var leadingConstaint: NSLayoutConstraint!
+    @IBOutlet weak var userProfile: VCImageView!
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var mobileNumber: UILabel!
     @IBOutlet weak var issuesTV: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        leadingConstaint.constant = -230
+        leadingConstaint.constant = -250
         menuBackgroundColor.alpha = 0
         tappedOnView()
-       dashBoardUserOrExecutive()
+        userProfileInfo()
+    }
+    
+//userProfile in dash board
+    func userProfileInfo(){
+         let imageUrl = UserDefaults.standard.value(forKey: "image") as! String
+        let user_name = UserDefaults.standard.value(forKey: "first_name") as! String
+        userName.text = user_name
+        let mobile = UserDefaults.standard.value(forKey: "phone") as! String
+        mobileNumber.text = mobile
+        
+        guard let imageURL = URL(string: imageUrl)else{return}
+         URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
+           
+            if let e = error {
+                print("Error Occurred: \(e)")
+            } else {
+                if (response as? HTTPURLResponse) != nil {
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.userProfile.image = image
+                        }
+                    } else {
+                        print("Image file is currupted")
+                    }
+                } else {
+                    print("No response from server")
+                }
+            }
+        }.resume()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        userIssuesArr.removeAll()
+        issuesTV.reloadData()
+        dashBoardUserOrExecutive()
     }
     func tappedOnView(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(menuBtn(_:)))
@@ -40,27 +79,33 @@ class VCIssuesVC: GenericVC{
         case "user":
             let postString = "user_id=\(userId)"
             postServiceData(serviceURL: Service.ISSUE_LIST, params: postString, type: UserIssueList.self) { (issuesList) in
-                guard let issueData = issuesList.data else{return}
-                KRProgressHUD.dismiss()
-                for issue in 0 ..< issueData.count{
-                    self.userIssuesArr.append(issueData[issue])
-//                    print(self.userIssuesArr)
-                    DispatchQueue.main.async {
-                        self.issuesTV.reloadData()
+                guard let status = issuesList.status, let message = issuesList.message else{return}
+                if status == 1{
+                    KRProgressHUD.dismiss()
+                    guard let issueData = issuesList.data else{return}
+                    for issue in 0 ..< issueData.count{
+                        self.userIssuesArr.append(issueData[issue])
+                        DispatchQueue.main.async {
+                            self.issuesTV.reloadData()
+                        }
                     }
-                }
+                }else{ KRProgressHUD.showMessage(message)}
             }
         case "executive":
             let postString = "executive_id=\(userId)"
-            postServiceData(serviceURL: Service.ISSUE_LIST_EXECUTIVE, params: postString, type: ExecutiveList.self) { (issuesList) in
-                guard let issueData = issuesList.data else{return}
-                KRProgressHUD.dismiss()
-                for issue in 0 ..< issueData.count{
-                    self.executiveIssueArr.append(issueData[issue])
-                }
-                DispatchQueue.main.async {
-                    self.issuesTV.reloadData()
-                }
+            postServiceData(serviceURL: Service.ISSUE_LIST_EXECUTIVE, params: postString, type: UserIssueList.self) { (issuesList) in
+                guard let status = issuesList.status, let message = issuesList.message else{return}
+                if status == 1{
+                    KRProgressHUD.dismiss()
+                    guard let issueData = issuesList.data else{return}
+                    for issue in 0 ..< issueData.count{
+                        self.userIssuesArr.append(issueData[issue])
+                    }
+                    DispatchQueue.main.async {
+                        self.issuesTV.reloadData()
+                    }
+                }else{ KRProgressHUD.showMessage(message)}
+                
             }
         default: break
         }
@@ -70,7 +115,7 @@ class VCIssuesVC: GenericVC{
         
         print("btn pressed")
         if isMenuShowing{
-            leadingConstaint.constant = -230
+            leadingConstaint.constant = -250
             menuBackgroundColor.alpha = 0
         }else{
             leadingConstaint.constant = 0
@@ -108,7 +153,7 @@ extension VCIssuesVC: UITableViewDataSource,UITableViewDelegate{
         case "user":
             return userIssuesArr.count
         case "executive":
-            return executiveIssueArr.count
+            return userIssuesArr.count
         default:
             return 0
         }
@@ -125,7 +170,7 @@ extension VCIssuesVC: UITableViewDataSource,UITableViewDelegate{
             cell.issueTimeLbl.text = user.datetime
             cell.status.text = user.workStatus?.rawValue
         case "executive":
-            let executive = executiveIssueArr[indexPath.row]
+            let executive = userIssuesArr[indexPath.row]
             cell.issueIdLbl.text = executive.issueId
             cell.issueNameLbl.text = executive.name
             cell.issueTimeLbl.text = executive.datetime

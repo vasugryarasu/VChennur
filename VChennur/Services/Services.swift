@@ -41,8 +41,10 @@ enum Service{
     static let GET_EXECUTIVE_ISSUE_CHAT = ISSUE_BASE_URL + "get_executive_issue_chat"
     static let ADD_ISSUE_CHAT = ISSUE_BASE_URL + "add_issue_chat"
     static let GET_CHAT_ISSUE_IMAGES = ISSUE_BASE_URL + "get_chat_issue_images"
-}
+    
 
+    
+}
 
 
 

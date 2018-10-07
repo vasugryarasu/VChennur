@@ -18,11 +18,9 @@ class VCIssueDetailAndChatVC: GenericVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-     issueDetailsAndChatViewControllers()
-        
+        issueDetailsAndChatViewControllers()
     }
-    
+   
     func issueDetailsAndChatViewControllers() {
                 switch userType {
                 case "user":
@@ -58,7 +56,6 @@ class VCIssueDetailAndChatVC: GenericVC {
         pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame: CGRect(x:0,y:66,width:self.view.frame.width ,height:self.view.frame.height) , pageMenuOptions: parameters)
 
         self.view.addSubview(pageMenu!.view)
-        
     }
     @IBAction func userOnTappedReplyBtn(_ sender: UIButton) {
         navigateToDestinationThrough(storyboardID: StoryboardId.CHAT_REPLY)

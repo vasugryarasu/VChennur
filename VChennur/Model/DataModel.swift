@@ -9,13 +9,10 @@
 import Foundation
 
 //Village
-struct Server: Decodable {
+struct Villages: Codable {
     let status: Int?
     let message: String?
-    let data: [Village]?
-}
-struct Village: Decodable{
-    let name: String?
+    let data: [[String: String]]?
 }
 //General Login post data
 struct Login:Codable{
@@ -61,56 +58,26 @@ struct Register: Codable {
 struct UserIssueList: Codable {
     let status: Int?
     let message: String?
-    let data: [UserIssues]?
+    let data: [IssuesData]?
 }
-struct UserIssues: Codable {
+struct IssuesData: Codable {
     let id, issueId, userId, name: String?
     let description, datetime: String?
     let issueCategory : CategoryType?
     let workStatus: StatusOfWork?
     let status: String?
     
-    enum CategoryType: String, Codable {
-        case empty = ""
-        case power = "power"
-        case water = "water"
-    }
-    
-    enum StatusOfWork: String, Codable {
-        case pending = "Pending"
-        case processing = "Processing"
-        case workStatusOpen = "Open"
-    }
 }
-
-//Executive Issue List
-struct ExecutiveList: Codable {
-    let status: Int?
-    let message: String?
-    let data: [Datum]?
+enum CategoryType: String, Codable {
+    case empty = ""
+    case power = "power"
+    case water = "water"
 }
-
-struct Datum: Codable {
-    let id, issueId, userId, name: String?
-    let description, datetime: String?
-    let issueCategory: CategoryType?
-    let workStatus: StatusOfWork?
-    let status: String?
-    
-    enum CategoryType: String, Codable {
-        case empty = ""
-        case power = "power"
-        case water = "water"
-    }
-    
-    enum StatusOfWork: String, Codable {
-        case pending = "Pending"
-        case processing = "Processing"
-        case workStatusOpen = "Open"
-    }
+enum StatusOfWork: String, Codable {
+    case pending = "Pending"
+    case processing = "Processing"
+    case workStatusOpen = "Open"
 }
-
-
 
 //Get images
 struct GetImages: Codable {

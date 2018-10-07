@@ -15,7 +15,9 @@ class VCAddIssue: GenericVC,UITextViewDelegate {
     
     let imagePicker = BSImagePickerViewController()
     var categoryType = [String]()
+    var categoryID = [String]()
     let categoryPicker = UIPickerView()
+    var pickedCategory: String?
     
     @IBOutlet weak var issueDescriptionTV: UITextView!
     @IBOutlet weak var issueNameTF: UITextField!
@@ -82,6 +84,7 @@ class VCAddIssue: GenericVC,UITextViewDelegate {
         guard let issueName = issueNameTF.text,
             let category = selectCategoryTF.text,
             let description = issueDescriptionTV.text,
+            let pickedValue = pickedCategory,
             
             let userPhone = UserDefaults.standard.value(forKey: "phone"),
             let userType = UserDefaults.standard.value(forKey: "user_type"),
@@ -91,13 +94,13 @@ class VCAddIssue: GenericVC,UITextViewDelegate {
         
         if category.count >= 1 && description.count >= 1 && issueName.count >= 1 {
             
-            let postString = "name=\(issueName)&user_phone=\(userPhone)&user_type=\(userType)&village_id=\(village)&issue_category=\(category)&user_name=\(userName)&description=\(description)&user_id=\(userId)"
+            let postString = "name=\(issueName)&user_phone=\(userPhone)&user_type=\(userType)&village_id=\(village)&issue_category=\(pickedValue)&user_name=\(userName)&description=\(description)&user_id=\(userId)"
             print(postString)
             postServiceData(serviceURL: Service.ADD_ISSUE, params: postString, type: AddIssue.self) { (addedIssue) in
                 guard let status = addedIssue.status,let message = addedIssue.message else{return}
                 print(status)
                 if status == 1{
-                    KRProgressHUD.showMessage(message)
+                    KRProgressHUD.showSuccess(withMessage: message)
                     DispatchQueue.main.async {
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -112,15 +115,20 @@ extension VCAddIssue: UIPickerViewDelegate,UIPickerViewDataSource{
     
     func getIssueCategory(){
         if categoryType.count == 0{
-            categoryType.append("No Data")
+            categoryPicker.isHidden = true
         }
         getServiceData(serviceURL: Service.ISSUE_CATEGORY_LIST, type: CategoryList.self) { (category) in
-            guard let categoryData = category.data else{return}
-            for i in 0..<categoryData.count{
-                self.categoryType.append(categoryData[i].name ?? "No data")
-                //print(self.categoryType)
+            guard let status = category.status, let message = category.message else{return}
+            if status == 1{
+                guard let categoryData = category.data else{return}
+                self.categoryType = categoryData.map({$0 .name!})
+                self.categoryID = categoryData.map({$0.id!})
+                DispatchQueue.main.async {
+                    self.categoryPicker.isHidden = false
+                }
+            }else{
+                KRProgressHUD.showMessage(message)
             }
-            self.categoryType.remove(at: 0)
         }
     }
     
@@ -136,6 +144,7 @@ extension VCAddIssue: UIPickerViewDelegate,UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectCategoryTF.text = categoryType[row]
+        pickedCategory = categoryID[pickerView.selectedRow(inComponent: 0)]
     }
     
     

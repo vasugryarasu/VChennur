@@ -15,6 +15,7 @@ class GenericVC: UIViewController,UITextFieldDelegate {
 
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         navigationController?.navigationBar.isHidden = true
     }
     
@@ -22,9 +23,6 @@ class GenericVC: UIViewController,UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return false
-    }
     
     @IBAction func backToViewControlller(_sender: UIButton){
         DispatchQueue.main.async {

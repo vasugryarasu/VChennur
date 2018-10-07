@@ -37,12 +37,15 @@ class VCChatReplyVC: GenericVC,UITextViewDelegate {
     }
     
     @IBAction func onTappedSubmitBtn(_ sender: UIButton) {
+        
         let userID = UserDefaults.standard.value(forKey: "user_id") as! String
-        guard let issueId = issueID ,let chatMessage = chatReplyTV.text else{return}
-        print(issueId)
+        let issue_ID = UserDefaults.standard.value(forKey: "id") as! String
+        guard let chatMessage = chatReplyTV.text else{return}
+        
         //if we want to send only text pass 0 (or) image 1  (or) voice 2
         let fileType = 0
-        let postString = "user_id=\(userID)&issue_id=\(issueId)&description=\(chatMessage)&file_type=\(fileType)"
+        let postString = "user_id=\(userID)&issue_id=\(issue_ID)&description=\(chatMessage)&file_type=\(fileType)"
+        print(postString)
         postServiceData(serviceURL: Service.ADD_ISSUE_CHAT, params: postString, type: Chatreply.self) { (replyStatus) in
             guard let status = replyStatus.status, let message = replyStatus.message else{return}
             if status == 1{

@@ -60,7 +60,6 @@
 		578283072153BFD6005D459F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5782830D2153CA89005D459F /* VCForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCForgotPasswordVC.swift; sourceTree = "<group>"; };
 		579021D0215E5BEA003C60A6 /* VCAddIssue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCAddIssue.swift; sourceTree = "<group>"; };
-		579137BD215CF18B003B5C46 /* VChennur-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VChennur-Bridging-Header.h"; sourceTree = "<group>"; };
 		579137C4215D2CED003B5C46 /* GenericVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericVC.swift; sourceTree = "<group>"; };
 		57A9A87F215DF989007DABE7 /* VCIssueDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIssueDetailVC.swift; sourceTree = "<group>"; };
 		57A9A881215E00D8007DABE7 /* VCIssueChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIssueChatVC.swift; sourceTree = "<group>"; };
@@ -242,7 +241,6 @@
 		57E6D0512155349B00C4AEA7 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				579137BD215CF18B003B5C46 /* VChennur-Bridging-Header.h */,
 				57D174A72152CC6200C2D758 /* VCIssuesVC.swift */,
 				57D174A92152CD2300C2D758 /* IssuesCell.swift */,
 				579021D8215E5CFB003C60A6 /* Issues&Chat */,
@@ -596,7 +594,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iGrand.VChennur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "VChennur/Controller/Home/VChennur-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -619,7 +617,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iGrand.VChennur;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "VChennur/Controller/Home/VChennur-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

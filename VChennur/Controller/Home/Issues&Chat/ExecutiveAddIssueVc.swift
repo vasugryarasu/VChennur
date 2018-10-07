@@ -17,10 +17,16 @@ class ExecutiveAddIssueVc: GenericVC,UIPickerViewDataSource,UIPickerViewDelegate
     @IBOutlet weak var mobileNumberTF: UITextField!
     @IBOutlet weak var descriptionTV: UITextView!
     
-    var selectedTextField = UITextField()
     var categoryType = [String]()
-    let picker = UIPickerView()
+    var categoryID = [String]()
+    var pickedCategoryType = String()
+
     var villageNames = [String]()
+    var villageID = [String]()
+    var pickedVillageID = String()
+    
+    let picker = UIPickerView()
+    var selectedTextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,30 +40,40 @@ class ExecutiveAddIssueVc: GenericVC,UIPickerViewDataSource,UIPickerViewDelegate
     
     func categoryNamesAndVillagesServiceCalling(){
         if categoryType.count == 0{
-            categoryType.append("No Data")
+            picker.isHidden = true
         }
+        getServiceData(serviceURL: Service.VILLAGE_NAMES_URL, type: Villages.self) { (village) in
+            guard let status = village.status, let message = village.message else{return}
+            if status == 1{
+                guard let villageData = village.data else{return}
+                self.villageNames = villageData.compactMap({$0["name"]})
+                self.villageID = villageData.compactMap({$0["id"]})
+                //                self.picker.isHidden = false
+                
+            }else{
+                KRProgressHUD.showMessage(message)
+            }
+        }
+        
         getServiceData(serviceURL: Service.ISSUE_CATEGORY_LIST, type: CategoryList.self) { (category) in
-            guard let categoryName = category.data else{return}
-            for i in 0..<categoryName.count{
-                self.categoryType.append(categoryName[i].name ?? "No Data")
+            guard let status = category.status, let message = category.message else{return}
+            if status == 1{
+                guard let categoryData = category.data else{return}
+                self.categoryType = categoryData.map({$0.name!})
+                self.categoryID = categoryData.map({$0.id!})
+                DispatchQueue.main.async {
+                    self.picker.isHidden = false
+                }
+            }else{
+                KRProgressHUD.showMessage(message)
             }
-            self.categoryType.remove(at: 0)
-            
-        }
-        getServiceData(serviceURL: Service.VILLAGE_NAMES_URL, type: Server.self) { (villages) in
-            guard let village = villages.data else{return}
-            for i in 0 ..< village.count{
-                guard let name = village[i].name else {return}
-                self.villageNames.append(name)
-            }
-            self.villageNames.remove(at: 0)
-            print(self.villageNames)
         }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if selectedTextField == selectVillageTF{
             return villageNames.count
@@ -67,6 +83,7 @@ class ExecutiveAddIssueVc: GenericVC,UIPickerViewDataSource,UIPickerViewDelegate
             return 0
         }
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if selectedTextField == selectVillageTF{
             return villageNames[row]
@@ -76,16 +93,20 @@ class ExecutiveAddIssueVc: GenericVC,UIPickerViewDataSource,UIPickerViewDelegate
             return "No data"
         }
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if selectedTextField == selectVillageTF{
             selectVillageTF.text = villageNames[row]
+            pickedVillageID = villageID[pickerView.selectedRow(inComponent: 0)]
             view.endEditing(true)
         }else if selectedTextField == selectCategoryTF  {
             selectCategoryTF.text = categoryType[row]
+            pickedCategoryType = categoryID[pickerView.selectedRow(inComponent: 0)]
             view.endEditing(true)
         }
     }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         selectedTextField = textField
         picker.delegate = self
@@ -115,15 +136,17 @@ class ExecutiveAddIssueVc: GenericVC,UIPickerViewDataSource,UIPickerViewDelegate
         
         if village.count >= 1 && category.count >= 1 && phone && description.count >= 1 && name.count >= 2 && phone == true {
             
-            let postString = "name=\(name)&user_phone=\(mobileNumber)&user_type=\(userType)&village_id=\(village)&issue_category=\(category)&user_name=\(userName)&description=\(description)&user_id=\(userId)"
-            print(postString)
+            let postString = "name=\(name)&user_phone=\(mobileNumber)&user_type=\(userType)&village_id=\(pickedVillageID)&issue_category=\(pickedCategoryType)&user_name=\(userName)&description=\(description)&executive_id=\(userId)"
+//                       print(postString)
             postServiceData(serviceURL: Service.ADD_ISSUE, params: postString, type: AddIssue.self) { (addedIssue) in
-                if let status = addedIssue.status, let message = addedIssue.message, let issueId = addedIssue.issueId{
-                    if status == 1{
-                        KRProgressHUD.showSuccess(withMessage: message + "Your ISSUE ID is\(issueId)")
-                    }else{
-                        print("not success")
-                    }
+                guard let status = addedIssue.status, let message = addedIssue.message else{return}
+                if status == 1{
+                    KRProgressHUD.showSuccess(withMessage: message)
+                        DispatchQueue.main.async {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                }else{
+                    KRProgressHUD.showMessage(message)
                 }
             }
         }else{

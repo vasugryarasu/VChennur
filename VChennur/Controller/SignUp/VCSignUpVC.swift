@@ -17,6 +17,8 @@ class VCSignUpVC: GenericVC{
     let imagePicker = UIImagePickerController()
     var imageName = String()
     var villageNames = [String]()
+    var villageId = [String]()
+    var pickedVillage: String?
 
 // MARK:- Create IBOutlets
     @IBOutlet weak var profileImage: UIImageView!
@@ -41,15 +43,27 @@ class VCSignUpVC: GenericVC{
        
 // MARK:- Village Names Service Calls
         if self.villageNames.count == 0{
-            self.villageNames.insert(" ", at: 0)
+            picker.isHidden = true
         }
-        getServiceData(serviceURL: Service.VILLAGE_NAMES_URL, type: Server.self) { (villages) in
-            guard let village = villages.data else{return}
-            for i in 0 ..< village.count{
-                guard let name = village[i].name else {return}
-                self.villageNames.append(name)
+        getServiceData(serviceURL: Service.VILLAGE_NAMES_URL, type: Villages.self) { (village) in
+            guard let status = village.status, let message = village.message else{return}
+            if status == 1{
+                guard let villageData = village.data else{return}
+                self.villageNames = villageData.compactMap({$0["name"]})
+                self.villageId = villageData.compactMap({$0["id"]})
+                DispatchQueue.main.async {
+                    self.picker.isHidden = false
+                }
+
+            }else{
+                KRProgressHUD.showMessage(message)
             }
-            self.villageNames.remove(at: 0)
+            
+//            for i in 0 ..< village.{
+//                guard let name = village[i].name else {return}
+//                self.villageNames.append(name)
+//            }
+//            self.villageNames.remove(at: 0)
         }
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -81,9 +95,8 @@ class VCSignUpVC: GenericVC{
     }
     func imageUploadRequest()
     {
-        guard let phone = mobileNumberTF.text, let village = selectVillageTF.text, let name = nameTF.text, let password = passwordTF.text else{return}
+        guard let phone = mobileNumberTF.text, let village = pickedVillage, let name = nameTF.text, let password = passwordTF.text ,let myUrl = URL(string: Service.BASE_URL)else{return}
 
-        guard let myUrl = URL(string: Service.BASE_URL)else{return}
         let request = NSMutableURLRequest(url:myUrl);
         request.httpMethod = "POST";
         
@@ -117,16 +130,17 @@ class VCSignUpVC: GenericVC{
                 let status = serverResponse["status"] as! Int
                 let message = serverResponse["message"] as! String
                 
-                DispatchQueue.main.async {
                     if status == 0{
                         KRProgressHUD.showMessage(message)
                     }else{
-                        let otp = serverResponse["otp"] as! Int
+                        let otp = serverResponse["otp"] as? Int
                         registeredOTP = otp
                         KRProgressHUD.showSuccess(withMessage: message)
-                        self.navigateToDestinationThrough(storyboardID: StoryboardId.ENTER_OTP)
+                        DispatchQueue.main.async {
+                            self.navigateToDestinationThrough(storyboardID: StoryboardId.ENTER_OTP)
+                        }
                     }
-                }
+                
             }catch
             {
                 print(error)
@@ -264,10 +278,11 @@ extension VCSignUpVC: UIPickerViewDelegate,UIPickerViewDataSource{
         return villageNames.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return "\(villageNames[row])"
+        return villageNames[row]
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectVillageTF.text = "\(villageNames[row])"
+        selectVillageTF.text = villageNames[row]
+       pickedVillage =  villageId[pickerView.selectedRow(inComponent: 0)]
     }
     
 }
