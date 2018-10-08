@@ -27,7 +27,7 @@ enum Service{
     static let BASE_URL = "http://www.vchennur.com/zOD52A/services/register/"
     static let VILLAGE_NAMES_URL = BASE_URL + "village_list"
     static let LOGIN_URL = BASE_URL + "login"
-    static let CHECK_OTP_URL = BASE_URL + "check_otp"
+    static let CHECK_OTP_URL = BASE_URL + "otp_login"
     static let FORGOT_PASSWORD = BASE_URL + "forget_passowrd"
     static let GENERAL_LOGIN = BASE_URL + "general_login"
     static let ISSUE_CATEGORY_LIST = BASE_URL + "issue_category_list"

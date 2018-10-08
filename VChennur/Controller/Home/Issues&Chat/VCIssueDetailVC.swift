@@ -11,7 +11,7 @@ import KRProgressHUD
 
 class VCIssueDetailVC: GenericVC ,UICollectionViewDelegate,UICollectionViewDataSource{
     
-    var imageData: [String] = []
+    var imageData: [URL] = []
     
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var issueIdLbl: UILabel!
@@ -21,27 +21,12 @@ class VCIssueDetailVC: GenericVC ,UICollectionViewDelegate,UICollectionViewDataS
     @IBOutlet weak var issueNameLbl: UILabel!
     @IBOutlet weak var issueDescriptionTV: UITextView!
     @IBOutlet weak var imagesCollectionView: UICollectionView!
+    @IBOutlet weak var issuesImagesCV: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         issueDetails()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageData.count
-        //        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "issueImagesCell", for: indexPath) as! IssueImageCell
-       
-        let url = URL(string:imageData[indexPath.row])
-        if let data = try? Data(contentsOf: url!)
-        {
-            cell.issueImage.image = UIImage(data: data)
-        }
-        return cell
+
     }
     
     func issueDetails(){
@@ -55,6 +40,7 @@ class VCIssueDetailVC: GenericVC ,UICollectionViewDelegate,UICollectionViewDataS
             postServiceData(serviceURL: Service.ISSUE_LIST, params: postString, type: UserIssueList.self) { (issuesList) in
                 guard let status = issuesList.status, let message = issuesList.message else{return}
                 if status == 1{
+                    KRProgressHUD.dismiss()
                     guard let issueData = issuesList.data else{return}
                     let issueDetails = issueData[selectedIndex]
                     guard let id = issueDetails.id else{return}
@@ -76,6 +62,7 @@ class VCIssueDetailVC: GenericVC ,UICollectionViewDelegate,UICollectionViewDataS
             postServiceData(serviceURL: Service.ISSUE_LIST_EXECUTIVE, params: postString, type: UserIssueList.self) { (issuesList) in
                 guard let status = issuesList.status, let message = issuesList.message else{return}
                 if status == 1{
+//                    KRProgressHUD.dismiss()
                     guard let issueData = issuesList.data else{return}
                     let issueDetails = issueData[selectedIndex]
                     guard let id = issueDetails.id else{return}
@@ -91,25 +78,59 @@ class VCIssueDetailVC: GenericVC ,UICollectionViewDelegate,UICollectionViewDataS
                     }
                 }else{KRProgressHUD.showMessage(message)}
             }
-            
         default:
             print("No data")
         }
-        
     }
     func getImages(issueIDForImages: String){
         
         let postString = "issue_id=\(issueIDForImages)"
         print(postString)
         postServiceData(serviceURL: Service.GET_ISSUE_IMAGES, params: postString, type: GetImages.self) { (getImages) in
-            guard let images = getImages.data else{return}
-            for i in 0 ..< images.count{
-                guard let image = images[i].image else{return}
-                self.imageData.append(image)
-                print(self.imageData)
-            }
-            KRProgressHUD.dismiss()
+            guard let status = getImages.status, let message = getImages.message else{return}
+            if status == 1{
+                KRProgressHUD.dismiss()
+                guard let images = getImages.data else{return}
+                for i in 0..<images.count{
+                    guard let url = URL(string:images[i].image!)else{return}
+                    self.imageData.append(url)
+                    DispatchQueue.main.async{
+                        self.issuesImagesCV.reloadData()
+                    }
+                }
+            }else{KRProgressHUD.showMessage(message)}
         }
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imageData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "issueImagesCell", for: indexPath) as! IssueImageCell
+        URLSession.shared.dataTask(with: imageData[indexPath.row]) { (data, response, error) in
+            if let e = error {
+                print("Error Occurred: \(e)")
+            } else {
+                if (response as? HTTPURLResponse) != nil {
+                    if let imageData = data {
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            cell.issueImage.image = image
+                        }
+
+                    } else {
+                        print("Image file is currupted")
+                    }
+                } else {
+                    print("No response from server")
+                }
+            }
+            }.resume()
+
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
     }
 }
 

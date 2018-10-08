@@ -31,26 +31,14 @@ struct DataClass: Codable {
     let image: String?
     let gender, address: String?
 }
-//OTP Model
-struct Otp: Codable {
-    let status, otp, loginType: Int?
-    let message, userType: String?
-    let data: OtpData?
-}
-
-struct OtpData: Codable {
-    let userID, firstName, lastName, phone: String?
-    let email, villageID, villageName: String?
-    let image: String?
-    let gender, address: String?
+// Login with OTP
+struct GenerateOTP: Codable{
+    let status: Int?
+    let message: String?
 }
 // Forgot Password
 struct ForgotPassword: Codable {
-    let status: Int
-    let message: String
-}
-struct Register: Codable {
-    let status, loginType, otp: Int?
+    let status: Int?
     let message: String?
 }
 
@@ -108,7 +96,7 @@ struct ExecutiveIssueChat: Codable {
     let status: Int?
     let message: String?
     let data: [ChatData]?
-
+    
 }
 struct ChatData: Codable {
     let id, issueId, userId: String?
@@ -131,7 +119,7 @@ struct AddIssue: Codable {
     let status: Int?
     let message: String?
     let issueId: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case status, message
         case issueId = "issue_id"

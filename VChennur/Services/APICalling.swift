@@ -54,7 +54,6 @@ extension UIViewController{
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let model = try decoder.decode(type, from: dataResponse)
                     completionHandler(model)
-                    //                KRProgressHUD.dismiss()
                 }catch let parsingError{
                     print("Error:",parsingError)
                 }

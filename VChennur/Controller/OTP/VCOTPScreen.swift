@@ -9,7 +9,6 @@
 import UIKit
 import KRProgressHUD
 
- var mobileOTP: Int?
 class VCOTPScreen: GenericVC {
     @IBOutlet weak var mobileNumberTF: UITextField!
     @IBOutlet weak var phoneSubmitBtn: UIButton!
@@ -19,7 +18,7 @@ class VCOTPScreen: GenericVC {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -27,44 +26,30 @@ class VCOTPScreen: GenericVC {
     @IBAction func mobileNumberSubmitBtn(_ sender: UIButton) {
         guard let phone = mobileNumberTF.text else{return}
         let isValid = mobileNumberValidate(value: phone)
-        loginWithOTP(isValidPhoneNumber: isValid,phoneNumber: phone)}
+        loginWithOTP(isValidPhoneNumber: isValid,phoneNumber: phone)
+    }
     
-     func loginWithOTP(isValidPhoneNumber: Bool,phoneNumber: String){
+    func loginWithOTP(isValidPhoneNumber: Bool,phoneNumber: String){
         print(isValidPhoneNumber)
         if isValidPhoneNumber{
-            
             let postString = "phone=\((phoneNumber))"
-            print(postString)
-            postServiceData(serviceURL: Service.LOGIN_URL, params: postString, type: Otp.self) { (userData) in
-                guard let otp = userData.otp else{return}
-                mobileOTP = otp
-                guard let received = userData.data?.phone else{return}
-//                guard let message = userData.message else{return}
-                if phoneNumber == received{
-                    KRProgressHUD.showSuccess(withMessage: "OTP sent to your registered mobile number")
-                    let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.ENTER_OTP) as! EnterOTPScreen
-                    vc.modalTransitionStyle = .crossDissolve
+            //            print(postString)
+            postServiceData(serviceURL: Service.LOGIN_URL, params: postString, type: GenerateOTP.self) { (userData) in
+                guard let status = userData.status, let message = userData.message else{return}
+                if status == 1{
                     DispatchQueue.main.async {
-                        let nav = UINavigationController(rootViewController: vc)
-                        self.present(nav, animated: true, completion: nil)
+                        KRProgressHUD.showMessage(message)
+                        let vc = self.storyboard?.instantiateViewController(withIdentifier: StoryboardId.ENTER_OTP) as! EnterOTPScreen
+                        vc.modalTransitionStyle = .crossDissolve
+                            let nav = UINavigationController(rootViewController: vc)
+                            self.present(nav, animated: true, completion: nil)
                     }
-                    print(phoneNumber) // toast
-                }else{}
+                }else{
+                    KRProgressHUD.showMessage(message)
+                }
             }
         }else{
-alert(title: "Try Again", message: "Mobile Number is invalid. Please enter a valid mobile number", actions: UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert(title: "Try Again", message: "Mobile Number is invalid. Please enter a valid mobile number", actions: UIAlertAction(title: "OK", style: .default, handler: nil))
         }
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

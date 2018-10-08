@@ -49,7 +49,7 @@ class ChatCell: UITableViewCell {
         chatBubble.translatesAutoresizingMaskIntoConstraints = false
         
         chatTime.numberOfLines = 0
-        chatTime.font = UIFont.italicSystemFont(ofSize: 12)
+        chatTime.font = UIFont.italicSystemFont(ofSize: 10)
         chatTime.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(chatBubble)

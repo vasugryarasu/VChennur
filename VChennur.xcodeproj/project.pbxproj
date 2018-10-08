@@ -20,7 +20,6 @@
 		574997EA2161608E00D921A5 /* IssueImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 574997E92161608E00D921A5 /* IssueImageCell.swift */; };
 		5753638D2158B4D6002B2E89 /* APICalling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753638C2158B4D6002B2E89 /* APICalling.swift */; };
 		5753639121590761002B2E89 /* Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5753639021590761002B2E89 /* Switcher.swift */; };
-		578283082153BFD6005D459F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 578283072153BFD6005D459F /* Info.plist */; };
 		5782830E2153CA89005D459F /* VCForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5782830D2153CA89005D459F /* VCForgotPasswordVC.swift */; };
 		579021D1215E5BEA003C60A6 /* VCAddIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579021D0215E5BEA003C60A6 /* VCAddIssue.swift */; };
 		579137C5215D2CED003B5C46 /* GenericVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579137C4215D2CED003B5C46 /* GenericVC.swift */; };
@@ -303,7 +302,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = iGrand;
 				TargetAttributes = {
 					5734F4F521523414009F30FC = {
@@ -337,7 +336,6 @@
 			files = (
 				5734F50421523418009F30FC /* LaunchScreen.storyboard in Resources */,
 				5734F50121523418009F30FC /* Assets.xcassets in Resources */,
-				578283082153BFD6005D459F /* Info.plist in Resources */,
 				57158244215AB2A6008080BA /* SplashScreen.jpeg in Resources */,
 				5734F4FF21523414009F30FC /* Main.storyboard in Resources */,
 			);

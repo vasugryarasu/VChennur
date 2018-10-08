@@ -39,6 +39,7 @@ class VCLoginVC: GenericVC {
             guard let status = userData.status,
                 let message = userData.message else{return}
             if status == 1{
+                KRProgressHUD.dismiss()
                 UserDefaults.standard.set("true", forKey: "status")
                 guard let userType = userData.userType,
                     let userId = userData.data?.userId,

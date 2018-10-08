@@ -20,24 +20,45 @@ class EnterOTPScreen: GenericVC {
     
     @IBAction func OTPSubmitBtn(_ sender: UIButton) {
         guard let mobileOtp = OTPTF.text else{return}
-        print(mobileOtp)
-        if mobileOTP == Int(mobileOtp) && mobileOtp.count >= 6{
-            navigateToDestinationThrough(storyboardID: StoryboardId.ISSUES_VC)
-        }else if registeredOTP == Int(mobileOtp) && mobileOtp.count >= 6{
-            navigateToDestinationThrough(storyboardID: StoryboardId.LOGIN_VC)
-        }else{
-            KRProgressHUD.showWarning(withMessage: "Invalid OTP please check and try again")
+        let postString = "otp=\(mobileOtp)"
+        postServiceData(serviceURL: Service.CHECK_OTP_URL, params: postString, type: GeneralLogin.self) { (OtpData) in
+            
+            guard let status = OtpData.status , let message = OtpData.message, let userType = OtpData.userType else{return}
+            if status == 1{
+                KRProgressHUD.dismiss()
+                guard let userData = OtpData.data else{return}
+                guard let userId = userData.userId,
+                    let name = userData.firstName,
+                    let phoneNumber = userData.phone,
+                    let villageId = userData.villageId,
+                    let image = userData.image else {return}
+                
+                UserDefaults.standard.set("true", forKey: "status")
+                UserDefaults.standard.set("\(userType)", forKey: "user_type")
+                UserDefaults.standard.set("\(userId)", forKey: "user_id")
+                UserDefaults.standard.set("\(name)", forKey: "first_name")
+                UserDefaults.standard.set("\(phoneNumber)", forKey: "phone")
+                UserDefaults.standard.set("\(villageId)", forKey: "village_id")
+                UserDefaults.standard.set("\(image)", forKey: "image")
+                Switcher.updateRootVC()
+                KRProgressHUD.showSuccess(withMessage: message)
+                
+            }else{
+                KRProgressHUD.showMessage(message)
+            }
         }
-    }
-   
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+        if fromSignUp == "fromSignUpVC"{
+            postServiceData(serviceURL: Service.CHECK_OTP_URL, params: postString, type: GeneralLogin.self) { (OtpData) in
+                guard let status = OtpData.status , let message = OtpData.message else{return}
+                if status == 1{
+                    KRProgressHUD.dismiss()
+                    DispatchQueue.main.async {
+                        self.navigateToDestinationThrough(storyboardID: StoryboardId.MENU_NAVIGATION_VC)
+                    }
+                }else{
+                        KRProgressHUD.showMessage(message)
+                    }
+                }
+            }
+        }
 }

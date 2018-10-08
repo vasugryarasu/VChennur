@@ -10,6 +10,7 @@ import UIKit
 import KRProgressHUD
 
 var registeredOTP: Int?
+let fromSignUp = "fromSignUpVC"
 class VCSignUpVC: GenericVC{
 
 // MARK:- Create Properties
@@ -48,6 +49,7 @@ class VCSignUpVC: GenericVC{
         getServiceData(serviceURL: Service.VILLAGE_NAMES_URL, type: Villages.self) { (village) in
             guard let status = village.status, let message = village.message else{return}
             if status == 1{
+                KRProgressHUD.dismiss()
                 guard let villageData = village.data else{return}
                 self.villageNames = villageData.compactMap({$0["name"]})
                 self.villageId = villageData.compactMap({$0["id"]})
@@ -135,7 +137,7 @@ class VCSignUpVC: GenericVC{
                     }else{
                         let otp = serverResponse["otp"] as? Int
                         registeredOTP = otp
-                        KRProgressHUD.showSuccess(withMessage: message)
+                        KRProgressHUD.showMessage(message)
                         DispatchQueue.main.async {
                             self.navigateToDestinationThrough(storyboardID: StoryboardId.ENTER_OTP)
                         }
